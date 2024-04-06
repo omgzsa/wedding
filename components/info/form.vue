@@ -78,15 +78,42 @@ const validate = (state: any): FormError[] => {
   return errors;
 };
 
+function uid() {
+  // generate a random uid form each song with slice
+  return Math.random().toString(36).slice(2);
+}
+
 async function onSubmit(event: FormSubmitEvent<any>) {
-  // items from songs.value should go into state.favMusic
   event.data = {
     ...event.data,
-    favMusic: songs.value,
+    beThere:
+      event.data.beThere === 'yes'
+        ? true
+        : event.data.beThere === 'no'
+        ? false
+        : null,
+    needsAccom:
+      event.data.needsAccom === 'yes'
+        ? true
+        : event.data.needsAccom === 'no'
+        ? false
+        : null,
+    favMusic: songs.value.map((song) => {
+      // each song should be a new object
+      return { id: uid(), name: song };
+    }),
+    favDrinks: event.data.favDrinks.map((drink: string) => {
+      return { id: uid(), name: drink };
+    }),
   };
 
   // reset the form values
   handleResetForm();
+
+  $fetch(`https://zsr.previsionlab.hu/items/visszajelzesek`, {
+    method: 'POST',
+    body: JSON.stringify(event.data),
+  });
 
   console.log(event.data);
 }
@@ -185,6 +212,7 @@ function handleResetForm() {
           class="space-y-2"
           v-model="state.needsAccom"
           :options="yesNoMaybe"
+          :disabled="state.beThere === 'no'"
         />
       </UFormGroup>
 
@@ -237,7 +265,7 @@ function handleResetForm() {
             v-model="state.favDrinks"
             name="favDrinks"
             :value="d.value"
-            :disabled="shouldDisableCheckbox(d.value)"
+            :disabled="shouldDisableCheckbox(d.value) || state.beThere === 'no'"
           >
             <template #label>
               <span :class="{ 'opacity-60': shouldDisableCheckbox(d.value) }">{{
