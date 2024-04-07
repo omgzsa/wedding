@@ -58,7 +58,5 @@ const programs = ref<Program[]>([
 
       <InfoForm />
     </UContainer>
-
-    <!-- <Bulbs class="absolute bottom-0 -z-50" /> -->
   </main>
 </template>
