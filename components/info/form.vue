@@ -226,7 +226,7 @@ function handleResetForm() {
         <template #help>
           <span class="text-[11px] tracking-wide"
             >Többet is írhatsz, a zenék után TEGYÉL vesszőt
-            <UKbd size="sm" value="," />!!</span
+            <UKbd size="sm" value="," class="text-neutral-300" />!!</span
           >
         </template>
         <UInput v-model="state.favMusic" @input="handleInput" />
