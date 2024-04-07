@@ -46,6 +46,10 @@
   label > span {
     @apply text-neutral-50;
   }
+
+  fieldset {
+    @apply space-y-2;
+  }
 }
 
 @layer utilities {
