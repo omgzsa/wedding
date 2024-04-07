@@ -34,9 +34,12 @@ useMotion(img, {
     </div>
     <div class="w-full border-t border-dark-200/25" />
     <div class="flex gap-4">
-      <p class="font-normal">2024. 07. 05.</p>
-      <p class="text-neutral-800">//</p>
-      <p class="font-normal uppercase">Achilles park, győr</p>
+      <!-- <p class="font-normal">2024. 07. 05.</p> -->
+      <p class="font-normal uppercase line-1 anim-typewriter">
+        2024. 07. 05. // Achilles park, Győr
+      </p>
+      <!-- <p class="text-neutral-800">//</p> -->
+      <!-- <p class="font-normal uppercase">Achilles park, Győr</p> -->
     </div>
     <div class="mx-auto glow">
       <img
@@ -78,6 +81,41 @@ useMotion(img, {
   100% {
     opacity: 0.8;
     box-shadow: 0 0 180px 10px #e0e0e0;
+  }
+}
+
+.line-1 {
+  position: relative;
+  top: 50%;
+  width: 18.5em;
+  margin: 0 auto;
+  border-right: 2px solid rgba(255, 255, 255, 0.75);
+  font-size: 112.5%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateY(-50%);
+}
+
+/* Animation */
+.anim-typewriter {
+  animation: typewriter 4s steps(44) 1s 1 normal both,
+    blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 18.5em;
+  }
+}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(255, 255, 255, 0.75);
+  }
+  to {
+    border-right-color: transparent;
   }
 }
 </style>
