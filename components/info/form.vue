@@ -212,7 +212,7 @@ function handleResetForm() {
           </div>
         </template>
         <URadioGroup
-          class="space-y-2"
+          class=""
           v-model="state.needsAccom"
           :options="yesNoMaybe"
           :disabled="state.beThere === 'no'"
@@ -305,28 +305,4 @@ function handleResetForm() {
   </UContainer>
 </template>
 
-<style>
-#__nuxt
-  > main
-  > div.mx-auto.px-4.sm\:px-6.lg\:px-8.max-w-7xl.py-6
-  > div.mx-auto.px-4.sm\:px-6.lg\:px-8.max-w-7xl.py-16.xl\:pt-24.border-neutral-400\/50
-  > form
-  > div:nth-child(4)
-  > div:nth-child(2)
-  > div
-  > fieldset {
-  @apply space-y-2;
-}
-
-#__nuxt
-  > main
-  > div.mx-auto.px-4.sm\:px-6.lg\:px-8.max-w-7xl.py-6
-  > div.mx-auto.px-4.sm\:px-6.lg\:px-8.max-w-7xl.py-16.xl\:pt-24.border-neutral-400\/50
-  > form
-  > div:nth-child(3)
-  > div:nth-child(2)
-  > div
-  > fieldset {
-  @apply space-y-2;
-}
-</style>
+<style></style>
