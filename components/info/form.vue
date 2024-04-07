@@ -229,7 +229,11 @@ function handleResetForm() {
             <UKbd size="sm" value="," class="text-neutral-300" />!!</span
           >
         </template>
-        <UInput v-model="state.favMusic" @input="handleInput" />
+        <UInput
+          v-model="state.favMusic"
+          @input="handleInput"
+          :disabled="state.beThere === 'no'"
+        />
         <div
           ref="favMusic"
           class="flex flex-wrap gap-1"
