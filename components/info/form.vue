@@ -242,22 +242,23 @@ function handleResetForm() {
           <UButton
             v-for="(song, index) in songs"
             :key="index"
-            class="mr-2"
+            class="mr-2 group"
             color="primary"
             :padded="false"
             variant="link"
             @click="removeSong(index)"
+            :title="`Törlés: ${song}`"
           >
             <template #leading>
               <UIcon
                 name="i-heroicons-x-mark"
                 size="sm"
-                class="mb-1.5"
+                class="mb-1 text-accent-300 group-hover:text-accent-500"
                 :padded="false"
                 square
               />
             </template>
-            <span class="">
+            <span class="text-accent-300 group-hover:text-accent-500">
               {{ song }}
             </span>
           </UButton>
