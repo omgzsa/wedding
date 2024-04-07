@@ -45,6 +45,8 @@ const programs = ref<Program[]>([
   <main class="relative z-0">
     <Bulbs class="absolute -z-50" />
 
+    <!-- <mode-switcher class="fixed top-4 right-4" /> -->
+
     <UContainer class="py-6">
       <h1 class="hidden">Rebeka és András esküvője || 2024. 07.05.</h1>
 
