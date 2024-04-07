@@ -21,6 +21,10 @@ export default defineNuxtConfig({
     // download: true,
   },
 
+  colorMode: {
+    preference: 'dark',
+  },
+
   modules: [
     '@nuxtjs/google-fonts',
     '@nuxt/ui',
