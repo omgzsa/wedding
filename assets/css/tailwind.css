@@ -28,22 +28,23 @@
   h2,
   h3,
   h4 {
-    @apply font-normal leading-tight tracking-wide text-white;
+    @apply font-normal leading-tight tracking-wide text-neutral-50;
   }
 
   a,
   p,
   li {
-    @apply text-base leading-snug tracking-wide text-white font-extralight;
+    @apply text-base leading-snug tracking-wide text-neutral-50 font-extralight;
   }
 
   span,
   kbd {
-    @apply text-neutral-300;
+    @apply text-neutral-400;
   }
 
-  div.ms-3.flex.flex-col > label {
-    @apply text-neutral-300;
+  div.ms-3.flex.flex-col > label,
+  label > span {
+    @apply text-neutral-50;
   }
 }
 
