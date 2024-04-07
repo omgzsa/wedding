@@ -1,5 +1,6 @@
 {
-  "name": "nuxt-app",
+  "name": "wedding-landing",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,6 +11,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
     "@vueuse/motion": "^2.1.0",
     "nuxt": "^3.11.1",
     "vue": "^3.4.21",
