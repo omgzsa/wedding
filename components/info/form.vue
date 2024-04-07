@@ -267,7 +267,10 @@ function handleResetForm() {
 
       <UFormGroup name="favDrinks" class="space-y-2 col-span-full">
         <template #label>
-          <p class="">Milyen italt innál a buliban?</p>
+          <div class="flex items-end gap-2">
+            <p class="font-medium text-white">Milyen italt innál a buliban?</p>
+            <span class="text-[11px] tracking-wide"></span>
+          </div>
         </template>
         <div class="space-y-2 columns-2 md:columns-3">
           <UCheckbox
