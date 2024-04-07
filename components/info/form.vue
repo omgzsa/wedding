@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useAutoAnimate } from '@formkit/auto-animate/vue';
 import { nextTick } from 'vue';
 import type { Form } from '@/types';
 import type { FormError, FormSubmitEvent } from '#ui/types';
+
+const [favMusic] = useAutoAnimate();
 
 const drinks = ref([
   { name: 'Vodka-Narancs', value: 'vodka' },
@@ -155,7 +158,7 @@ function handleResetForm() {
 </script>
 
 <template>
-  <UContainer class="py-16 xl:pt-24 border-neutral-400/50">
+  <UContainer class="pt-16 xl:pt-24 border-neutral-400/50">
     <UForm
       :validate="validate"
       :state="state"
@@ -222,12 +225,16 @@ function handleResetForm() {
         </template>
         <template #help>
           <span class="text-[11px] tracking-wide"
-            >Többet is írhatsz, a számok után TEGYÉL vesszőt
-            <UKbd size="sm" value="," />!</span
+            >Többet is írhatsz, a zenék után TEGYÉL vesszőt
+            <UKbd size="sm" value="," />!!</span
           >
         </template>
         <UInput v-model="state.favMusic" @input="handleInput" />
-        <div class="flex flex-wrap gap-1" :class="{ 'mt-2': songs.length > 0 }">
+        <div
+          ref="favMusic"
+          class="flex flex-wrap gap-1"
+          :class="{ 'mt-2': songs.length > 0 }"
+        >
           <UButton
             v-for="(song, index) in songs"
             :key="index"
