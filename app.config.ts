@@ -3,7 +3,7 @@ export default defineAppConfig({
     primary: 'amber',
     gray: 'neutral',
     notification: {
-      position: 'top-0 bottom-auto',
+      position: 'top-0 bottom-auto z-50',
     },
     kbd: {
       background: 'bg-transparent dark:bg-transparent',
