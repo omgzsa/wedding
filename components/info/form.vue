@@ -69,14 +69,14 @@ const validate = (state: any): FormError[] => {
   if (!state.beThere) {
     errors.push({
       path: 'beThere',
-      message: 'Kérlek válaszolj, hogy ott leszel-e az esküvőn. ',
+      message: 'Kérlek válaszolj, hogy ott leszel-e az esküvőn.',
     });
   }
 
   if (!state.needsAccom) {
     errors.push({
       path: 'needsAccom',
-      message: 'Kérlek válaszolj, hogy szükséged van-e szállásra. ',
+      message: 'Kérlek válaszolj, hogy szükséged van-e szállásra.',
     });
   }
 
@@ -314,6 +314,7 @@ function handleResetForm() {
         <UButton
           class="px-10 py-2 text-lg font-bold transition-all shadow-sm dark:text-gray-900 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-dark-100 bg-accent-500 hover:bg-accent-300 disabled:bg-accent-100/50 dark:hover:bg-accent-500 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400"
           type="submit"
+          :loading="loading"
         >
           {{ loading ? 'Küldés...' : 'Küldés' }}
         </UButton>
