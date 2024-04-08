@@ -4,6 +4,7 @@ import { nextTick } from 'vue';
 import type { Form } from '@/types';
 import type { FormError, FormSubmitEvent } from '#ui/types';
 
+const router = useRouter();
 const [favMusic] = useAutoAnimate();
 const toast = useToast();
 const loading = ref(false);
@@ -123,18 +124,19 @@ async function onSubmit(event: FormSubmitEvent<any>) {
       body: JSON.stringify(data),
     });
 
-    toast.add({
-      title: 'Elküldve, köszönjük, hogy kitöltötted! ❤️',
-    });
+    // toast.add({
+    //   title: 'Elküldve, köszönjük, hogy kitöltötted! ❤️',
+    // });
 
     console.log(data);
   } catch (error) {
     toast.add({
-      title: 'Valami hiba történt a küldésnél! 💥',
+      title: 'Valami hiba történt a küldésnél, próbáld újra! 💥',
       color: 'red',
     });
   } finally {
     loading.value = false;
+    router.push('/juhuu');
   }
 }
 
