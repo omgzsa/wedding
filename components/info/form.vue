@@ -5,6 +5,8 @@ import type { Form } from '@/types';
 import type { FormError, FormSubmitEvent } from '#ui/types';
 
 const [favMusic] = useAutoAnimate();
+const toast = useToast();
+const loading = ref(false);
 
 const drinks = ref([
   { name: 'Vodka-Narancs', value: 'vodka' },
@@ -87,38 +89,53 @@ function uid() {
 }
 
 async function onSubmit(event: FormSubmitEvent<any>) {
-  event.data = {
-    ...event.data,
-    beThere:
-      event.data.beThere === 'yes'
-        ? true
-        : event.data.beThere === 'no'
-        ? false
-        : null,
-    needsAccom:
-      event.data.needsAccom === 'yes'
-        ? true
-        : event.data.needsAccom === 'no'
-        ? false
-        : null,
-    favMusic: songs.value.map((song) => {
-      // each song should be a new object
-      return { id: uid(), name: song };
-    }),
-    favDrinks: event.data.favDrinks.map((drink: string) => {
-      return { id: uid(), name: drink };
-    }),
-  };
+  if (loading.value) return;
 
-  // reset the form values
-  handleResetForm();
+  loading.value = true;
 
-  $fetch(`https://zsr.previsionlab.hu/items/visszajelzesek`, {
-    method: 'POST',
-    body: JSON.stringify(event.data),
-  });
+  let data = { ...event.data };
 
-  console.log(event.data);
+  try {
+    data = {
+      ...data,
+      beThere:
+        data.beThere === 'yes' ? true : data.beThere === 'no' ? false : null,
+      needsAccom:
+        data.needsAccom === 'yes'
+          ? true
+          : data.needsAccom === 'no'
+          ? false
+          : null,
+      favMusic: songs.value.map((song) => {
+        // each song should be a new object
+        return { id: uid(), name: song };
+      }),
+      favDrinks: data.favDrinks.map((drink: string) => {
+        return { id: uid(), name: drink };
+      }),
+    };
+
+    // reset the form values
+    handleResetForm();
+
+    $fetch(`https://zsr.preisionlab.hu/items/visszajelzesek`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+
+    toast.add({
+      title: 'Elküldve, köszönjük, hogy kitöltötted! ❤️',
+    });
+
+    console.log(data);
+  } catch (error) {
+    toast.add({
+      title: 'Valami hiba történt a küldésnél!',
+      color: 'red',
+    });
+  } finally {
+    loading.value = false;
+  }
 }
 
 function shouldDisableCheckbox(value: string): boolean {
@@ -298,7 +315,7 @@ function handleResetForm() {
           class="px-10 py-2 text-lg font-bold transition-all shadow-sm dark:text-gray-900 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-dark-100 bg-accent-500 hover:bg-accent-300 disabled:bg-accent-100/50 dark:hover:bg-accent-500 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400"
           type="submit"
         >
-          Elküld
+          {{ loading ? 'Küldés...' : 'Küldés' }}
         </UButton>
       </div>
     </UForm>

@@ -13,7 +13,9 @@ nuxtApp.hook('page:finish', () => {
 </script>
 
 <template>
-  <NuxtPage />
-  <TheFooter />
-  <UNotifications />
+  <div>
+    <NuxtPage />
+    <UNotifications />
+    <TheFooter />
+  </div>
 </template>
