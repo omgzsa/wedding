@@ -1,7 +1,9 @@
 <template>
-  <div class="relative w-full h-full">
-    <SvgAchilles class="absolute z-30 bg-dark-100" />
-    <Bulbs class="absolute z-40" />
+  <div class="relative">
+    <SvgAchilles class="bg-dark-100" />
+    <Bulbs class="absolute top-0 z-40" />
+    <SvgCane class="absolute bottom-0 z-40 left-42 w-44" />
+    <SvgGrass class="absolute bottom-0 z-40 right-5 w-44" />
   </div>
 </template>
 
