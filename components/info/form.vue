@@ -304,5 +304,3 @@ function handleResetForm() {
     </UForm>
   </UContainer>
 </template>
-
-<style></style>
