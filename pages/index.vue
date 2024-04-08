@@ -50,7 +50,8 @@ const programs = ref<Program[]>([
     <UContainer class="py-6">
       <h1 class="hidden">Rebeka és András esküvője || 2024. 07.05.</h1>
 
-      <Hero />
+      <HeroMobile />
+      <HeroDesktop />
 
       <Program>
         <ProgramItem v-for="p in programs" :key="p.id" :program="p" class="" />
