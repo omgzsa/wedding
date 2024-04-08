@@ -62,4 +62,5 @@ const programs = ref<Program[]>([
       <InfoForm />
     </UContainer>
   </main>
+  <TheFooter />
 </template>
