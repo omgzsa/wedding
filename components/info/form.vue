@@ -118,7 +118,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
     // reset the form values
     handleResetForm();
 
-    $fetch(`https://zsr.preisionlab.hu/items/visszajelzesek`, {
+    await $fetch(`https://zsr.previsionlab.hu/items/visszajelzesek`, {
       method: 'POST',
       body: JSON.stringify(data),
     });
@@ -130,7 +130,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
     console.log(data);
   } catch (error) {
     toast.add({
-      title: 'Valami hiba történt a küldésnél!',
+      title: 'Valami hiba történt a küldésnél! 💥',
       color: 'red',
     });
   } finally {
