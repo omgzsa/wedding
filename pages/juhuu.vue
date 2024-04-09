@@ -1,4 +1,10 @@
-<script lang="ts" setup></script>
+<script setup>
+// definePageMeta({
+//   pageTransition: {
+//     name: 'page',
+//   },
+// });
+</script>
 
 <template>
   <div class="grid h-screen px-4 bg-[#fbf3f1] place-content-center">
