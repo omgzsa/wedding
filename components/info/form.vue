@@ -23,6 +23,14 @@ const drinks = ref([
   { name: 'Nem iszom alkoholt', value: 'dont-drink' },
 ]);
 
+const allergies = ref([
+  { name: 'Glutén érzékenység', value: 'gluten' },
+  { name: 'Tej- vagy laktóz érzékenység', value: 'lactose' },
+  { name: 'Tojásallergia', value: 'egg' },
+  { name: 'Mogyoró allergia', value: 'peanut' },
+  { name: 'Vega/Vegán', value: 'vegan' },
+]);
+
 const songs = ref<string[]>([]);
 
 const state = reactive<Form>({
@@ -31,6 +39,8 @@ const state = reactive<Form>({
   beThere: null,
   needsAccom: null,
   favMusic: '',
+  allergies: [],
+  otherAllergy: '',
   favDrinks: [],
 });
 
@@ -94,6 +104,15 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 
   loading.value = true;
 
+  const otherAllergyObj = computed(() => {
+    return state.otherAllergy
+      ? {
+          id: uid(),
+          name: state.otherAllergy,
+        }
+      : null;
+  });
+
   let data = { ...event.data };
 
   try {
@@ -107,6 +126,12 @@ async function onSubmit(event: FormSubmitEvent<any>) {
           : data.needsAccom === 'no'
           ? false
           : null,
+      allergies: [
+        ...data.allergies.map((allergy: string) => {
+          return { id: uid(), name: allergy };
+        }),
+        otherAllergyObj.value,
+      ].filter(Boolean),
       favMusic: songs.value.map((song) => {
         // each song should be a new object
         return { id: uid(), name: song };
@@ -171,6 +196,8 @@ function handleResetForm() {
   state.beThere = null;
   state.needsAccom = null;
   state.favMusic = '';
+  state.allergies = [];
+  state.otherAllergy = '';
   state.favDrinks = [];
   songs.value = [];
 }
@@ -184,6 +211,9 @@ function handleResetForm() {
       class="grid gap-8 transition-all duration-300 ease-in-out md:grid-cols-2"
       @submit="onSubmit"
     >
+      <!-- 
+      MY NAME
+     -->
       <UFormGroup name="myName">
         <template #label>
           <p class="font-medium text-white">Neved</p>
@@ -196,6 +226,9 @@ function handleResetForm() {
         <UInput v-model="state.myName" type="text" />
       </UFormGroup>
 
+      <!-- 
+        EMAIL
+      -->
       <UFormGroup name="email">
         <template #label>
           <p class="font-medium text-white">E-mail címed</p>
@@ -208,6 +241,9 @@ function handleResetForm() {
         <UInput v-model="state.email" />
       </UFormGroup>
 
+      <!-- 
+        BE THERE?
+       -->
       <UFormGroup name="beThere" class="space-y-2">
         <template #label>
           <div class="flex items-end gap-2">
@@ -215,14 +251,12 @@ function handleResetForm() {
             <span class="text-[11px] tracking-wide"></span>
           </div>
         </template>
-        <!-- <template #hint>
-          <span class="text-[11px] tracking-wide"
-            >Kérlek május 31.-ig jelezz vissza.</span
-          >
-        </template> -->
         <URadioGroup v-model="state.beThere" :options="yesNoMaybe" />
       </UFormGroup>
 
+      <!-- 
+        NEEDS ACCOMODATION
+       -->
       <UFormGroup name="needsAccom" class="space-y-2">
         <template #label>
           <div class="flex items-end gap-2">
@@ -238,6 +272,9 @@ function handleResetForm() {
         />
       </UFormGroup>
 
+      <!-- 
+        FAV MUSIC
+       -->
       <UFormGroup name="favMusic" class="transition-all col-span-full">
         <template #label>
           <p class="">Milyen zenét hallgatnál a buliban?</p>
@@ -284,6 +321,42 @@ function handleResetForm() {
         </div>
       </UFormGroup>
 
+      <!-- 
+        FOOD ALLERGIES
+       -->
+      <UFormGroup name="allergies" class="space-y-2 col-span-full">
+        <template #label>
+          <div class="flex items-end gap-2">
+            <p class="font-medium text-white">
+              Van valamilyen ételallergiád vagy különleges ételigényed?
+            </p>
+            <span class="text-[11px] tracking-wide"></span>
+          </div>
+        </template>
+        <div class="space-y-2 columns-2 md:columns-3">
+          <UCheckbox
+            v-for="a in allergies"
+            :key="a.name"
+            :id="a.value"
+            v-model="state.allergies"
+            :name="`allergies-${a.value}`"
+            :value="a.value"
+          >
+            <template #label>
+              <span>{{ a.name }}</span>
+            </template>
+          </UCheckbox>
+          <UInput
+            v-model="state.otherAllergy"
+            type="text"
+            placeholder="Egyéb"
+          />
+        </div>
+      </UFormGroup>
+
+      <!-- 
+        FAV DRINK
+       -->
       <UFormGroup name="favDrinks" class="space-y-2 col-span-full">
         <template #label>
           <div class="flex items-end gap-2">
@@ -297,21 +370,21 @@ function handleResetForm() {
             :key="d.name"
             :id="d.value"
             v-model="state.favDrinks"
-            name="favDrinks"
+            :name="`favDrinks-${d.value}`"
+            :label="d.name"
             :value="d.value"
             :disabled="shouldDisableCheckbox(d.value) || state.beThere === 'no'"
           >
-            <template #label>
+            <!-- <template #label>
               <span :class="{ 'opacity-60': shouldDisableCheckbox(d.value) }">{{
                 d.name
               }}</span>
-            </template>
+            </template> -->
           </UCheckbox>
         </div>
       </UFormGroup>
 
-      <!-- <pre class="py-4">{{ state }}</pre> -->
-
+      <!-- submit -->
       <div class="mx-auto col-span-full">
         <UButton
           class="px-10 py-2 text-lg font-bold transition-all shadow-sm dark:text-gray-900 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-dark-100 bg-accent-500 hover:bg-accent-300 disabled:bg-accent-100/50 dark:hover:bg-accent-500 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400"
