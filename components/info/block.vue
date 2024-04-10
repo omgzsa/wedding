@@ -1,11 +1,11 @@
 <template>
   <UContainer class="pt-16 xl:pt-24">
+    <h3 class="mb-8 text-xl">Kedves Család és Barátok!</h3>
     <div class="grid gap-8 sm:grid-cols-2">
       <div class="space-y-8">
         <p>
-          Kedves Család és Barátok! Július 5-én, Győrben az Achilles Parkban
-          debütálunk, mint férj és feleség és boldoggá tennél minket ha velünk
-          ünnepelnél ezen a napon.
+          Július 5-én, Győrben az Achilles Parkban debütálunk, mint férj és
+          feleség és boldoggá tennél minket ha velünk ünnepelnél ezen a napon.
         </p>
         <p>
           Szabadtéri ceremónia, svédasztalos vacsora, buli hajnalig, másnap
