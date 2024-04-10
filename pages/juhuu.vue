@@ -7,12 +7,12 @@
 </script>
 
 <template>
-  <div class="grid h-screen px-4 bg-[#fbf3f1] place-content-center">
+  <div class="grid h-screen bg-[#fbf3f1] place-content-center">
     <div class="text-center">
       <NuxtImg
         :src="`../../flat-design-party-ai-generative.jpg`"
         alt="koszonjuk splash"
-        class="max-w-4xl"
+        class="lg:max-w-4xl"
       />
 
       <h1
