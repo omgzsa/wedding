@@ -37,5 +37,7 @@ export interface Form {
   beThere: YesNoMaybe | null;
   needsAccom: YesNoMaybe | null;
   favMusic: string;
+  allergies: string[];
+  otherAllergy: string;
   favDrinks: FavDrinks;
 }
