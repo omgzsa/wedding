@@ -25,7 +25,7 @@
       </div>
       <div class="space-y-8">
         <p>
-          Ami a nászajándékkal kapcsolatban bár minden figyelmességet szívből
+          A nászajándékkal kapcsolatban bár minden figyelmességet szívből
           köszönünk, ha mégis szeretnétek minket meglepni, jelenleg a legnagyobb
           segítség a "házasélet-indító" alapunkba való hozzájárulás lenne.
         </p>
