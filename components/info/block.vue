@@ -12,13 +12,20 @@
           egész nap strandolás és morzsa party lesz a program! ☀️
         </p>
         <p>
+          Mivel a nagy nap nyáron lesz, nem várjuk el tőletek a hivatalos vagy
+          sötét öltözéket. Inkább arra buzdítunk benneteket, hogy érkezzetek
+          laza, kényelmes ruhában amiben jól érzitek magatokat, gondolva az
+          eseményre és az időjárásra egyaránt. A fontos az, hogy élvezzétek a
+          napot! 😊
+        </p>
+        <p>
           A helyszínen kb. 35 főnek tudunk szállást biztosítani, úgyhogy a
           közelben lakók is nyugodtan jelezzék, ha szeretnétek ott aludni.
         </p>
       </div>
       <div class="space-y-8">
         <p>
-          Ami a nászajándékot illeti, bár minden figyelmességet szívből
+          Ami a nászajándékkal kapcsolatban bár minden figyelmességet szívből
           köszönünk, ha mégis szeretnétek minket meglepni, jelenleg a legnagyobb
           segítség a "házasélet-indító" alapunkba való hozzájárulás lenne.
         </p>
